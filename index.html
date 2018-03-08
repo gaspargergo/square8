@@ -1,0 +1,53 @@
+<!doctype HTML>
+<html>
+
+<head>
+	<style type="text/css">
+		#canvas{
+			position: absolute;
+			left: 50%;
+			margin-left: -300px;
+			top: 50%;
+			margin-top: -300px;
+		}
+	</style>
+</head>
+
+<body>
+	
+	<canvas id="canvas" height="600px" width="600px"></canvas>
+
+	<script>
+		var c = document.getElementById("canvas");
+		var ctx = c.getContext("2d");
+
+		var rectWidth = 0;
+		var rectHeight = 0;
+
+
+		fill();
+
+		function fill(){
+			requestAnimationFrame(fill);
+
+			if(rectWidth < c.width/2){
+				rectWidth += 5;
+				rectHeight += 5;
+				ctx.fillRect(0,0,rectWidth,rectHeight);
+				ctx.fillRect(c.width,0,-rectWidth,rectHeight);
+				ctx.fillRect(c.width,c.height,-rectWidth,-rectHeight);
+				ctx.fillRect(0,c.height,rectWidth,-rectHeight);
+			}
+			else{
+				rectWidth = 0;
+				rectHeight = 0;
+				ctx.fillStyle ='#'+ Math.random().toString(16).slice(-6);
+			}
+			
+			
+		}
+
+	</script>
+</body>
+
+</html>
